@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:zeroth/screens/clock_five.dart';
 import 'package:zeroth/screens/clock_four.dart';
 import 'package:zeroth/screens/clock_three.dart';
 import 'package:zeroth/screens/clock_two.dart';
@@ -21,6 +22,8 @@ class MyApp extends StatelessWidget {
           ClockTwoScreen(),
           ClockFour(textList: ["Heroes are born", "Wake up to reality"]),
           ClockThree(),
+          ClockFive(),
+          // ClockSix(),
         ],
       ),
     );
