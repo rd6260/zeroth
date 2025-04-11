@@ -9,40 +9,41 @@ class ClockFive extends StatefulWidget {
   State<ClockFive> createState() => _ClockFiveState();
 }
 
-class _ClockFiveState extends State<ClockFive> with SingleTickerProviderStateMixin {
+class _ClockFiveState extends State<ClockFive>
+    with SingleTickerProviderStateMixin {
   late Timer _timer;
   late DateTime _currentTime;
   late AnimationController _pulseController;
   late Animation<double> _pulseAnimation;
-  
+
   final String _sleepDuration = "8H 32M";
-  final double _temp = 25.0;
+  final double _temp = 27.0;
   final bool _wifiConnected = true;
   final bool _bluetoothConnected = true;
-  
+
   @override
   void initState() {
     super.initState();
     _currentTime = DateTime.now();
-    
+
     // Set up timer to update time every second
     _timer = Timer.periodic(const Duration(seconds: 1), (timer) {
       setState(() {
         _currentTime = DateTime.now();
       });
     });
-    
+
     // Set up pulsing animation for the active elements
     _pulseController = AnimationController(
       duration: const Duration(seconds: 3),
       vsync: this,
     )..repeat(reverse: true);
-    
+
     _pulseAnimation = Tween<double>(begin: 0.7, end: 1.0).animate(
-      CurvedAnimation(parent: _pulseController, curve: Curves.easeInOut)
+      CurvedAnimation(parent: _pulseController, curve: Curves.easeInOut),
     );
   }
-  
+
   @override
   void dispose() {
     _timer.cancel();
@@ -73,11 +74,11 @@ class _ClockFiveState extends State<ClockFive> with SingleTickerProviderStateMix
       ),
     );
   }
-  
+
   Widget _buildDateDisplay() {
     String dayName = DateFormat('EEEE').format(_currentTime);
     String day = DateFormat('d').format(_currentTime);
-    
+
     return Align(
       alignment: Alignment.centerLeft,
       child: Text(
@@ -91,12 +92,12 @@ class _ClockFiveState extends State<ClockFive> with SingleTickerProviderStateMix
       ),
     );
   }
-  
+
   Widget _buildTimeDisplay() {
     String hours = DateFormat('HH').format(_currentTime);
     String minutes = DateFormat('mm').format(_currentTime);
     String seconds = DateFormat('ss').format(_currentTime);
-    
+
     return Row(
       mainAxisAlignment: MainAxisAlignment.start,
       crossAxisAlignment: CrossAxisAlignment.baseline,
@@ -115,7 +116,9 @@ class _ClockFiveState extends State<ClockFive> with SingleTickerProviderStateMix
                 height: 1.2,
                 shadows: [
                   Shadow(
-                    color: Colors.cyan.withValues(alpha: 0.3 * _pulseAnimation.value),
+                    color: Colors.cyan.withValues(
+                      alpha: 0.3 * _pulseAnimation.value,
+                    ),
                     blurRadius: 12 * _pulseAnimation.value,
                   ),
                 ],
@@ -135,7 +138,7 @@ class _ClockFiveState extends State<ClockFive> with SingleTickerProviderStateMix
       ],
     );
   }
-  
+
   Widget _buildSleepData() {
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
@@ -235,7 +238,7 @@ class _ClockFiveState extends State<ClockFive> with SingleTickerProviderStateMix
       ],
     );
   }
-  
+
   Widget _buildBottomRow() {
     return Row(
       mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -249,7 +252,7 @@ class _ClockFiveState extends State<ClockFive> with SingleTickerProviderStateMix
             fontWeight: FontWeight.w300,
           ),
         ),
-        
+
         // WiFi and Bluetooth icons
         Row(
           children: [
@@ -258,9 +261,12 @@ class _ClockFiveState extends State<ClockFive> with SingleTickerProviderStateMix
               builder: (context, child) {
                 return Icon(
                   Icons.wifi,
-                  color: _wifiConnected 
-                    ? Colors.white.withValues(alpha: _pulseAnimation.value) 
-                    : Colors.white.withValues(alpha: 0.3),
+                  color:
+                      _wifiConnected
+                          ? Colors.white.withValues(
+                            alpha: _pulseAnimation.value,
+                          )
+                          : Colors.white.withValues(alpha: 0.3),
                   size: 24,
                 );
               },
@@ -271,9 +277,12 @@ class _ClockFiveState extends State<ClockFive> with SingleTickerProviderStateMix
               builder: (context, child) {
                 return Icon(
                   Icons.bluetooth,
-                  color: _bluetoothConnected 
-                    ? Colors.white.withValues(alpha: _pulseAnimation.value) 
-                    : Colors.white.withValues(alpha: 0.3),
+                  color:
+                      _bluetoothConnected
+                          ? Colors.white.withValues(
+                            alpha: _pulseAnimation.value,
+                          )
+                          : Colors.white.withValues(alpha: 0.3),
                   size: 24,
                 );
               },

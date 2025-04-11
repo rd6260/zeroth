@@ -353,21 +353,3 @@ class FuturisticElementsPainter extends CustomPainter {
            oldDelegate.pulseValue != pulseValue;
   }
 }
-
-// // Main entry point
-// void main() {
-//   WidgetsFlutterBinding.ensureInitialized();
-//   // Force portrait orientation
-//   SystemChrome.setPreferredOrientations([
-//     DeviceOrientation.portraitUp,
-//     DeviceOrientation.portraitDown,
-//   ]);
-  
-//   // Set up full screen mode
-//   SystemChrome.setEnabledSystemUIMode(SystemUiMode.immersiveSticky);
-  
-//   runApp(const MaterialApp(
-//     debugShowCheckedModeBanner: false,
-//     home: ClockThree(),
-//   ));
-// }

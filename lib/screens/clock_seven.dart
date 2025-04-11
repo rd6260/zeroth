@@ -60,7 +60,7 @@ class _ClockSevenState extends State<ClockSeven> {
                     mainAxisAlignment: MainAxisAlignment.center,
                     children: [
                       Text(
-                        intl.DateFormat('HH:mm ').format(_now),
+                        intl.DateFormat('HH:mm').format(_now),
                         style: TextStyle(
                           color: Colors.white.withValues(alpha: 0.9),
                           fontSize: 18,
@@ -71,7 +71,7 @@ class _ClockSevenState extends State<ClockSeven> {
                       const SizedBox(height: 8),
                       // Day display
                       Text(
-                        intl.DateFormat('EEEE, ').format(_now),
+                        intl.DateFormat(' EEEE, ').format(_now),
                         style: TextStyle(
                           color: Colors.white.withValues(alpha: 0.7),
                           fontSize: 16,
